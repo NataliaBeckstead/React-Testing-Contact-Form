@@ -113,3 +113,30 @@ test("Throwing error for not adding a name", async () => {
     await findByTestId('errorEmail');
     
 })
+
+test("Contact form adds new contact", async () => {
+    const { getByLabelText, findByTestId } = render(<ContactForm />);
+
+    const firstNameInput = getByLabelText (/First Name*/i);
+    const lastNameInput = getByLabelText (/Last Name*/i);
+    const emailInput = getByLabelText (/Email*/i);
+    const messageInput = getByLabelText (/Message/i);
+
+    fireEvent.change(firstNameInput, { 
+        target: { name: "firstName", value: "Natalia" } 
+    });
+    fireEvent.change(lastNameInput, { 
+        target: { name: "lastName", value: "Beckstead" } 
+    });
+    fireEvent.change(emailInput, { 
+        target: { name: "email", value: "mira@mail.ru" } 
+    });
+    fireEvent.change(messageInput, { 
+        target: { name: "message", value: "some message" } 
+    });
+
+    fireEvent.click(document.getElementById('submit'));
+
+    await findByTestId('errorFName')
+    
+})
