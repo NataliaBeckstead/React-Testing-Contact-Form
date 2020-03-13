@@ -52,6 +52,14 @@ const ContactForm = () => {
           <label htmlFor="message">Message</label>
           <textarea id="message" name="message" ref={register({ required: false })} />
         </div>
+        <div>
+          <label htmlFor="gender">Gender:</label>
+          <select id="gender" name="gender">
+            <option value="male">male</option>
+            <option value="female">female</option>
+            <option value="other">other</option>
+          </select>
+        </div>
         {data && (
           <pre data-testid='output' style={{ textAlign: "left", color: "white" }}>
             {JSON.stringify(data, null, 2)}
